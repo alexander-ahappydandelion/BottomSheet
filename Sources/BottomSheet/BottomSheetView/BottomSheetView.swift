@@ -76,7 +76,7 @@ internal struct BottomSheetView<HContent: View, MContent: View>: View {
                 value: self.bottomSheetPosition
             )
             .animation(
-                self.configuration.animation,
+                self.configuration.translationAnimation,
                 value: self.translation
             )
 #if !os(macOS)
@@ -96,10 +96,6 @@ internal struct BottomSheetView<HContent: View, MContent: View>: View {
             .animation(
                 self.configuration.animation,
                 value: self.dynamicMainContentHeight
-            )
-            .animation(
-                self.configuration.animation,
-                value: self.configuration
             )
         }
         // Make the GeometryReader ignore specific safe area (for transition to work)

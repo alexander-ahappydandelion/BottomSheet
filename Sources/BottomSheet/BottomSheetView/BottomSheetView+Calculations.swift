@@ -95,6 +95,13 @@ internal extension BottomSheetView {
         )
     }
     
+    // The free space
+    func freeSpace(with geometry: GeometryProxy) -> CGFloat {
+        let currentBottomSheetHeight = currentBottomSheetHeight(with: geometry) - translation
+        let freeSpace = maxBottomSheetHeight(with: geometry) - currentBottomSheetHeight
+        return freeSpace
+    }
+    
     // The maximum height of the BottomSheet
     func maxBottomSheetHeight(with geometry: GeometryProxy) -> CGFloat {
         // Screen height without safe areas and padding

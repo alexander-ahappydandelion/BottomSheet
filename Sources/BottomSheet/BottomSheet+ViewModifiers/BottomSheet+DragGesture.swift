@@ -33,6 +33,11 @@ public extension BottomSheet {
         return self
     }
     
+    func onFreeSpaceChanged(_ perform: @escaping (CGFloat) -> Void) -> BottomSheet {
+        self.configuration.onFreeSpaceChanged = perform
+        return self
+    }
+    
     /// Replaces the action that will be performed when the user drags the sheet down.
     ///
     /// The `GeometryProxy` and `DragGesture.Value` parameter can be used for calculations.
