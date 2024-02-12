@@ -16,6 +16,7 @@ internal struct BottomSheetView<HContent: View, MContent: View>: View {
 #endif
     
     @Binding var bottomSheetPosition: BottomSheetPosition
+    @GestureState var isDragging: Bool = false
     @State var translation: CGFloat = 0
     
 #if !os(macOS)
@@ -76,7 +77,9 @@ internal struct BottomSheetView<HContent: View, MContent: View>: View {
                 value: self.bottomSheetPosition
             )
             .animation(
-                self.configuration.translationAnimation,
+                isDragging
+                    ? self.configuration.draggingAnimation
+                    : self.configuration.animation,
                 value: self.translation
             )
 #if !os(macOS)

@@ -10,6 +10,9 @@ import SwiftUI
 internal extension BottomSheetView {
     func dragGesture(with geometry: GeometryProxy) -> some Gesture {
         DragGesture(coordinateSpace: .global)
+            .updating($isDragging) { _, isDragging, _ in
+                isDragging = true
+            }
             .onChanged { value in
                 // Perform custom onChanged action
                 self.configuration.onDragChanged(value)
@@ -47,6 +50,9 @@ internal extension BottomSheetView {
 #if !os(macOS)
     func appleScrollViewDragGesture(with geometry: GeometryProxy) -> some Gesture {
         DragGesture(coordinateSpace: .global)
+            .updating($isDragging) { _, isDragging, _ in
+                isDragging = true
+            }
             .onChanged { value in
                 if self.bottomSheetPosition.isTop && value.translation.height < 0 {
                     // Notify the ScrollView that the user is scrolling
